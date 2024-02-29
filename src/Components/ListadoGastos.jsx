@@ -1,56 +1,42 @@
-import Gasto from "./Gasto"
+import Gasto from "./Gasto";
 
 const ListadoGastos = ({
-    gastos,
-    setGastoEditar,
-    eliminarGasto,
-    gastosfiltrados,
-    filtro}) => {
+  gastos,
+  setGastoEditar,
+  eliminarGasto,
+  gastosFiltrados,
+  filtro,
+}) => {
   return (
     <div className="listado-gastos contenedor">
-        <h2>{gastos.length ? 'Gastos' : 'No hay gastos'}</h2>
-        
-        {gastos.map( gasto => (
+      {filtro ? (
+        <>
+          <h2>{gastosFiltrados.length ? "Gastos" : "No hay gastos en esta categoría"}</h2>
+
+          {gastosFiltrados?.map((gasto) => (
             <Gasto
-            key={gasto.id}
-            gasto={gasto}
-            setGastoEditar={setGastoEditar}
-            eliminarGasto={eliminarGasto}
- 
-            />
-            
-        /*
-        
-        {filtro && gastosfiltrados ? (
-            
-            gastosfiltrados.map( gasto => (
-                <Gasto
-                key={gasto.id}
-                gasto={gasto}
-                setGastoEditar={setGastoEditar}
-                eliminarGasto={eliminarGasto}
-    
-                />
-          ))
-          ) : (
-            gastos.map( gasto => (
-              <Gasto
               key={gasto.id}
               gasto={gasto}
               setGastoEditar={setGastoEditar}
               eliminarGasto={eliminarGasto}
             />
-              
-         ))
-          )
-        }
-        */
-        ))}
+          ))}
+        </>
+      ) : (
+        <>
+          <h2>{gastos.length ? "Gastos" : "No hay gastos"}</h2>
+          {gastos?.map((gasto) => (
+            <Gasto
+              key={gasto.id}
+              gasto={gasto}
+              setGastoEditar={setGastoEditar}
+              eliminarGasto={eliminarGasto}
+            />
+          ))}
+        </>
+      )}
+    </div>
+  );
+};
 
-
-
-       </div>
-  )
-}
-
-export default ListadoGastos
+export default ListadoGastos;
